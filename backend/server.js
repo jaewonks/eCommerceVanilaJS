@@ -1,9 +1,20 @@
 import express from 'express';
 import cors from 'cors';
 import data from './data.js';
+import mongoose from 'mongoose'
+import config from './config.js';
+
+mongoose.connect(config.MONGODB_URL, {
+    useNewUrlParser: true, useUnifiedTopology: true,
+    useCreateIndex: true, useFindAndModify: false
+}).then(() => {
+    console.log('Connected to MongoDB.')
+})
+  .catch((error) => {
+    console.log(error.reason)
+})
 
 const app = express();
-
 app.use(cors());
 app.get('/api/products', (req, res) => { res.send(data.products); });
 //서버에서 데이터를 응답

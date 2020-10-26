@@ -60,7 +60,7 @@ products: [
         name: 'Comme des garcons sweater Dark Grey',
         category: 'Outerwear',
         brand: 'Comme des garcons',
-        image: '/images/product_1.jpg',
+        image: '/images/product_6.jpg',
         price: 220,
         rating: 1.5,
         numReviews: 3,

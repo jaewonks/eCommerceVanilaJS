@@ -16,6 +16,9 @@ a {
 a:hover {
     color: #f1e8e6;
 }
+li {
+    list-style-type: none;
+}
 button {
     font-size: 1.6rem;
     padding: 1rem;
@@ -28,6 +31,9 @@ button:hover {
     color: #f1e8e6;
 }
 button.primary {
+    background-color: #FFA07A;
+}
+.delete-button {
     background-color: #FFA07A;
 }
 .fw {
@@ -87,6 +93,7 @@ footer {
     margin: 1rem;
     margin-bottom: 0;
     height: 42rem;
+    padding: 0;
     border-top: .2rem #FFA07A solid; /* 2px */
 }
 .product {
@@ -98,7 +105,7 @@ footer {
 .product img {
     max-height: 30rem;
     max-width: 30rem;
-    margin-top: 2rem;
+    margin-top: -0.45rem; 
 }
 .product-name {
     line-height: 2.2rem;
@@ -142,7 +149,6 @@ footer {
 .details-info ul, 
 .details-action ul {
     padding: 0;
-    list-style-type: none;
 }
 .details-info h1 {
     font-size: 2rem;
@@ -158,3 +164,59 @@ footer {
     background-color: #f1e8e6;
     padding:  1rem;
 }
+/* Cart */
+.cart {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  
+.cart-list {
+    flex: 3 1 60rem;
+  }
+.cart-action {
+    flex: 1 1 20rem;
+    background-color: #f1e8e6;
+    border-radius: 0.5rem;
+    padding: 1rem;
+  }
+.cart-list-container {
+    padding: 1rem;
+    list-style-type: none;
+  }
+  
+.cart-list-container li {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 0.1rem #f1e8e6 solid;
+  }
+.cart-list-container img {
+    max-width: 10rem;
+    max-height: 10rem;
+  }
+.cart-list-container li:first-child {
+    align-items: flex-end;
+  }
+.cart-image {
+    flex: 1 1;
+  }
+.cart-name {
+    flex: 8 1;
+  }
+.cart-price {
+    flex: 1 1;
+    text-align: right;
+  }
+.cart-name > div {
+    padding: 1rem;
+  }
+.cart-list h3 {
+    margin: 0;
+  }
+.cart-list button,
+.cart-list select {
+    font-size: 1.3rem;
+    padding: 0.5rem;
+  }

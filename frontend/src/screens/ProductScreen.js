@@ -6,6 +6,7 @@ const ProductScreen = {
     after_render: () => {
         const request = parseRequestUrl();
         document.getElementById('add-button').addEventListener('click', () => {
+        // url에 '#'뒤 식별자를 값으로 하는 DOM string
          document.location.hash = `/cart/${request.id}`;
         });
     },
