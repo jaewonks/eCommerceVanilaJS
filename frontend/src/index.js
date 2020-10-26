@@ -1,11 +1,16 @@
 import { parseRequestUrl } from './utils.js';
-import HomeScreen from './screens/HomeScreen.js';
-import ProductScreen from './screens/ProductScreen.js';
 import Error404Screen from './screens/Error404Screen.js';
+import HomeScreen from './screens/HomeScreen.js';
 import CartScreen from './screens/CartScreen.js';
+import SigninScreen from './screens/SigninScreen.js';
+import ProfileScreen from './screens/ProfileScreen.js';
+import ProductScreen from './screens/ProductScreen.js';
+import Header from './components/Header.js';
 
 const routes = {
     '/': HomeScreen,
+    '/signin' : SigninScreen,
+    '/profile' : ProfileScreen,
     '/product/:id': ProductScreen,
     '/cart': CartScreen, //네비게이션 우측 Cart로 들어가는 것 
     '/cart/:id': CartScreen
@@ -16,6 +21,9 @@ const router = async () => {
         (request.resource ? `/${request.resource}` : '/') +
         (request.id ? '/:id' : '') +
         (request.verb ? `/${request.verb}` : '');
+    const header = document.getElementById('header-container');
+    header.innerHTML = await Header.render();
+    if(Header.after_render) await Header.after_render();
     const screen = routes[parseUrl]? routes[parseUrl]: Error404Screen;    
     const main = document.getElementById('main-container');
     main.innerHTML = await screen.render();

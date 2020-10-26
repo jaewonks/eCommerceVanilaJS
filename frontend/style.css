@@ -19,6 +19,7 @@ a:hover {
 li {
     list-style-type: none;
 }
+input,
 button {
     font-size: 1.6rem;
     padding: 1rem;
@@ -27,6 +28,10 @@ button {
     outline: none;
     border: 0;
 }
+input {
+    background-color:rgb(232, 240, 254);
+}
+
 button:hover {
     color: #f1e8e6;
 }
@@ -219,4 +224,29 @@ footer {
 .cart-list select {
     font-size: 1.3rem;
     padding: 0.5rem;
+  }
+  /* Form */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+  }
+  .form-items {
+    display: flex;
+    flex-direction: column;
+    width: 32rem;
+    padding: 2rem;
+    border: 0.1rem #c0c0c0 solid;
+    border-radius: 0.5rem;
+    list-style-type: none;
+  }
+  .form-items li {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+  .form-container h1 {
+    font-size: 2.5rem;
   }

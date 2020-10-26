@@ -4,4 +4,5 @@ dotenv.config(); // by calling this function, .env reads config.js and fells pro
 
 export default {
   MONGODB_URL: process.env.MONGODB_URL,
+  JWT_SECRET: process.env.JWT_SECRET,
 };
