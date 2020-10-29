@@ -1,4 +1,4 @@
-import { update } from "../api.js";
+import { getMyorders, update } from "../api.js";
 import { getUserInfo, setUserInfo, signoutUser } from "../localStorage.js";
 import { hideLoading, showLoading, showMessage } from "../utils.js";
 
@@ -30,7 +30,7 @@ const ProfileScreen = {
     if(!name) {
       document.location.hash = '/';
     }
-    
+    const orders = await getMyorders();
     return `
       <div class="content profile">
         <div class="profile-info">
@@ -61,6 +61,35 @@ const ProfileScreen = {
               </ul>
             </form>
           </div>
+        </div>
+        <div class='profile-orders'>
+          <h2>Order History</h2>
+            <table>
+              <thead>
+                <th>ORDER ID</th>
+                <th>DATE</th>
+                <th>TOTAL</th>
+                <th>PAID</th>
+                <th>DELIVERED</th>
+                <th>ACTIONS</th>
+              </thead>
+              <tbody>
+                ${
+                  orders.length === 0 ? 
+                  `<tr><td colspan='6'>No Order Found.</td></tr>` :
+                  orders.map((order) => 
+                    `<tr>
+                      <td>${order._id}</td>
+                      <td>${order.createdAt}</td>
+                      <td>${order.totalPrice}</td>
+                      <td>${order.isPaid}</td>
+                      <td>${order.isDelivered}</td>
+                      <td><a href='/#/order/${order._id}'>DETIALS</a></td>
+                    </tr>`
+                  ).join('\n')
+                }
+              </tbody>
+            </table>       
         </div>
       </div>
     `

@@ -6,6 +6,11 @@ import { isAuth } from '../utils.js';
 
 const router = express.Router();
 
+router.get('/mine', isAuth, expressAsyncHandler( async (req, res) => {
+  //only current user
+  const orders = await Order.find({ user: req.user._id });
+  res.send(orders);
+}))
 //orderScreen.js
 router.get('/:id', isAuth, expressAsyncHandler( async (req, res) => {
   const order = await Order.findById(req.params.id); //order collection에서 파라미터로 정보 찾기

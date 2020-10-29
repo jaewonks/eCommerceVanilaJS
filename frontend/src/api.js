@@ -22,6 +22,25 @@ export const getProduct = async (id) => {
     }
 }
 
+export const getMyorders = async () => {
+  try {
+    const { token } = getUserInfo(); //from local storage
+    const response = await axios({
+      url: `${apiUrl}/api/orders/mine`,
+      headers: {
+        'Content-Type' : 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      });
+      if(response.statusText !== 'OK') {
+        throw new Error(response.data.message);
+      }
+      return response.data;
+    } catch(err) {
+    return { error: err.response ? err.response.data.message : err.message };
+  }
+};
+
 export const signup = async ({name, email, password}) => {
     try { //서버로 정보를 보낸다
       const response = await axios({
