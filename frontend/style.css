@@ -98,8 +98,9 @@ header{
 header a{
     color: #454545;
     text-decoration: none;
+    padding: 0 .3rem;
 }
-header a:hover {
+header a:hover {w
     color: #f1e8e6;
 }
 .brand a{

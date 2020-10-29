@@ -10,6 +10,8 @@ import ProductScreen from './screens/ProductScreen.js';
 import PaymentScreen from './screens/PaymentScreen.js';
 import PlaceOrderScreen from './screens/PlaceOrderScreen.js';
 import OrderScreen from './screens/OrderScreen.js';
+import DashboardScreen from './screens/DashboardScreen.js';
+import ProductListScreen from './screens/ProductListScreen.js';
 import Header from './components/Header.js';
 
 const routes = {
@@ -24,6 +26,8 @@ const routes = {
     '/cart': CartScreen, //네비게이션 우측 Cart로 들어가는 것 
     '/cart/:id': CartScreen,
     '/order/:id': OrderScreen,
+    '/dashboard': DashboardScreen,
+    '/productlist': ProductListScreen,
 };
 const router = async () => {
     showLoading();
