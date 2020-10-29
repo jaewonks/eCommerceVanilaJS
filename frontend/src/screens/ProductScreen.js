@@ -1,5 +1,5 @@
 import { getProduct } from '../api';
-import { parseRequestUrl } from '../utils';
+import { hideLoading, parseRequestUrl, showLoading } from '../utils';
 import Rating from '../components/Rating';
 
 const ProductScreen = {
@@ -12,10 +12,12 @@ const ProductScreen = {
     },
     render: async () => {
         const request = parseRequestUrl(); //url을 분석
+        showLoading();
         const product = await getProduct(request.id); //서버에 데이터를 요청
         if (product.error) {
             return `<div>${product.error}</div>`;
         }
+        hideLoading();
         return `
         <div class='content'>
             <div class='back-to-result'>

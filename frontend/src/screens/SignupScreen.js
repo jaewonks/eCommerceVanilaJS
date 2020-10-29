@@ -1,19 +1,19 @@
-import { signin } from "../api.js";
+import { signup } from '../api.js'
 import { getUserInfo, setUserInfo } from "../localStorage.js";
 import { hideLoading, redirectUser, showLoading, showMessage } from "../utils.js";
 
-const SigninScreen = {
+const SignupScreen = {
   after_render: () => {
-    document.getElementById('signin-form')
-    .addEventListener('submit', async (e) => {
+    document.getElementById('signup-form').addEventListener('submit', async (e) => {
       e.preventDefault();
       showLoading();
-      const data = await signin({
+      const data = await signup({
+        name: document.getElementById('name').value,
         email: document.getElementById('email').value,
         password: document.getElementById('password').value
-      })
+      });
       hideLoading();
-      if(data.error) { //사용자가 잘못된 정보를 보냈을 경우
+      if(data.error) {
         showMessage(data.error);
       } else {
         setUserInfo(data);
@@ -23,17 +23,21 @@ const SigninScreen = {
     })
   },
   render: () => {
-    //로그인한 사람은 로그인 페이지에 들어가지 못하게 하는 코드
     if(getUserInfo().name) {
       //document.location.hash = '/';
       redirectUser();
     }
+    
     return `
     <div class="form-container">
-    <form id="signin-form">
+    <form id="signup-form">
       <ul class="form-items">
         <li>
-          <h1>Sign-In</h1>
+          <h1>Create Account</h1>
+        </li>
+        <li>
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" />
         </li>
         <li>
           <label for="email">Email</label>
@@ -44,12 +48,16 @@ const SigninScreen = {
           <input type="password" name="password" id="password" />
         </li>
         <li>
-          <button type="submit" class="primary">Signin</button>
+          <label for="repassword">Re-Enter Password</label>
+          <input type="password" name="repassword" id="repassword" />
+        </li>
+        <li>
+          <button type="submit" class="primary">Sign Up</button>
         </li>
         <li>
           <div>
-            New User?
-            <a href="/#/signup">Create your account</a>
+            Already have an account?
+            <a href="/#/signin">Sign-in</a>
           </div>
         </li>
       </ul>
@@ -59,4 +67,4 @@ const SigninScreen = {
   }
 };
 
-export default SigninScreen;
+export default SignupScreen;

@@ -107,7 +107,7 @@ const CartScreen = {
       </div>
       <div class='cart-action'>
           <h3>Subtotal (${cartItems.reduce((a, c) => a + c.qty, 0)} items) :
-          £${cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
+            £${cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
           </h3>
           <button id='checkout-button' class='fw primary'>Proceed to Checkout</button>
       </div>

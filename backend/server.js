@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import config from './config.js';
 import useRouter from './routers/userRouter.js'
+import orderRouter from './routers/orderRouter.js'
 
 mongoose.connect(config.MONGODB_URL, {
     useNewUrlParser: true, useUnifiedTopology: true,
@@ -20,6 +21,10 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use('/api/users', useRouter);
+app.use('/api/orders', orderRouter)
+app.get('/api/paypal/clientId', (req, res) => {
+    res.send({ clientId: config.PAYPAL_CLIENT_ID })
+})
 app.get('/api/products', (req, res) => { res.send(data.products); });
 //서버에서 데이터를 응답
 app.get('/api/products/:id', (req, res) => {

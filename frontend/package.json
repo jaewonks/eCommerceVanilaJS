@@ -4,7 +4,8 @@
   "description": "Vanila Js web",
   "main": "index.js",
   "dependencies": {
-    "axios": "^0.21.0"
+    "axios": "^0.21.0",
+    "fs": "0.0.1-security"
   },
   "devDependencies": {
     "webpack": "^4.43.0",
