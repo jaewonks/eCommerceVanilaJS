@@ -31,5 +31,9 @@ export const isAuth = (req, res, next) => {
 }
 
 export const isAdmin = (req, res, next) => {
-  
+  if(req.user && req.user.isAdmin) { //frontend에서 요청 받은 유저가 있고 그 유저가 어드민이면
+    next();
+  } else { // 유저가 없거나 어드민이 아닌 경우
+    res.stauts(401).send({ message: 'Token is not vaild for admin user.' })
+  }
 }

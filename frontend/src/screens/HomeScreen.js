@@ -1,10 +1,9 @@
-import axios from 'axios';
+import { getProducts } from '../api.js';
 import Rating from '../components/Rating.js';
-import { hideLoading, showLoading } from '../utils.js';
 
 const HomeScreen = {
   render: async () => {
-    showLoading();
+  /*   showLoading();
     const response = await axios({
             url: 'http://localhost:5000/api/products', 
             headers: {
@@ -16,7 +15,11 @@ const HomeScreen = {
             return `<div>Error in getting data</div>`;
         }
         //응답으로 얻은 제이슨 데이터
-        const products = await response.data;
+        const products = await response.data; */
+        const products = await getProducts();
+        if(products.error) {
+            return `<div class='error'>${products.error}</div>`;
+        }
 
         return `
             <ul class='products'>

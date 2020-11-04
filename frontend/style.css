@@ -399,6 +399,7 @@ footer {
   }
   .dashboard-menu a:hover {
     background-color: #c0c0c0;
+    color: #f08040;
   }
   .dashboard-menu li.selected a {
     background-color: #c0c0c0;

@@ -6,7 +6,7 @@ export const parseRequestUrl = () => {
   return { //[0]은 구성: 사이트 주소/#/product/:id
     resource: request[1], 
     id: request[2],
-    action: request[3]
+    verb: request[3]
   }
 }
 // cartScreen component

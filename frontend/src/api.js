@@ -42,6 +42,48 @@ export const getProduct = async (id) => {
     }
 }
 
+export const createProduct = async () => {
+  try {
+    const { token } = getUserInfo(); 
+    // 로컬에 저장되어 있는 유저 정보 token: token
+    const response = await axios({
+      url: `${apiUrl}/api/products`, // localhost:5000 http프로토콜로 요청을 보낸다
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if(response.statusText !== 'Created') {
+      throw new Error(response.data.message)
+    }
+    return response.data;
+  } catch(err) {
+    return { error: err.response.data.message || err.message }
+  }
+};
+
+export const updateProduct = async (product) => {
+  try {
+    const { token } = getUserInfo();
+    const response = await axios({
+      url: `${apiUrl}/api/products/${product._id}`,
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      data: product,
+    });
+    if (response.statusText !== 'OK') {
+      throw new Error(response.data.message);
+    }
+    return response.data;
+  } catch (err) {
+    return { error: err.response.data.message || err.message };
+  }
+};
+
 export const getMyorders = async () => {
   try {
     const { token } = getUserInfo(); //from local storage

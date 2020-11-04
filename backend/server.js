@@ -6,6 +6,7 @@ import bodyParser from 'body-parser';
 import config from './config.js';
 import useRouter from './routers/userRouter.js'
 import orderRouter from './routers/orderRouter.js'
+import productRouter from './routers/productRouter.js'
 
 mongoose.connect(config.MONGODB_URL, {
     useNewUrlParser: true, useUnifiedTopology: true,
@@ -21,12 +22,14 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use('/api/users', useRouter);
-app.use('/api/orders', orderRouter)
+app.use('/api/orders', orderRouter);
+app.use('/api/products', productRouter);
 app.get('/api/paypal/clientId', (req, res) => {
     res.send({ clientId: config.PAYPAL_CLIENT_ID })
 })
-app.get('/api/products', (req, res) => { res.send(data.products); });
-//서버에서 데이터를 응답
+
+// stactic data
+/* app.get('/api/products', (req, res) => { res.send(data.products); });
 app.get('/api/products/:id', (req, res) => {
     const product = data.products.find(p => p._id === req.params.id);
     if(product) {
@@ -34,7 +37,7 @@ app.get('/api/products/:id', (req, res) => {
     } else {
         res.status(404).send({ message: 'Product Not Found!' })
     }
-})
+}) */
 app.use((err, req, res, next) => {
     const status = err.name && err.name === 'ValidationError'? 400 : 500;
 })
