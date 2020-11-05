@@ -1,12 +1,14 @@
 import express from 'express';
 import cors from 'cors';
-import data from './data.js';
+// import data from './data.js';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import config from './config.js';
 import useRouter from './routers/userRouter.js'
 import orderRouter from './routers/orderRouter.js'
 import productRouter from './routers/productRouter.js'
+import uploadRouter from './routers/uploadRouter.js'
+import path from 'path';
 
 mongoose.connect(config.MONGODB_URL, {
     useNewUrlParser: true, useUnifiedTopology: true,
@@ -24,10 +26,15 @@ app.use(bodyParser.json());
 app.use('/api/users', useRouter);
 app.use('/api/orders', orderRouter);
 app.use('/api/products', productRouter);
+app.use('/api/uploads', uploadRouter);
 app.get('/api/paypal/clientId', (req, res) => {
     res.send({ clientId: config.PAYPAL_CLIENT_ID })
 })
-
+app.use('/uploads', express.static(path.join(__dirname, '/../uploads')));
+app.use(express.static(path.join(__dirname, '/../frontend')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/../frontend/index.html'));
+});
 // stactic data
 /* app.get('/api/products', (req, res) => { res.send(data.products); });
 app.get('/api/products/:id', (req, res) => {

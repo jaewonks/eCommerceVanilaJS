@@ -14,6 +14,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --watch-content-base --open",
+    "dev" : "webpack --mode=production --output ./main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jaewon Kim",

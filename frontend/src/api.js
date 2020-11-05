@@ -1,5 +1,5 @@
-import axios from 'axios'
-import { apiUrl } from './config.js'
+import axios from 'axios';
+import { apiUrl } from './config.js';
 import { getUserInfo } from './localStorage.js';
 
 export const getProducts = async () => {
@@ -39,8 +39,8 @@ export const getProduct = async (id) => {
     } catch(err) {
         console.log(err);
         return { error: err.response.data.message || err.message };
-    }
-}
+    };
+};
 
 export const createProduct = async () => {
   try {
@@ -82,6 +82,48 @@ export const updateProduct = async (product) => {
   } catch (err) {
     return { error: err.response.data.message || err.message };
   }
+};
+
+export const uploadProductImage = async (formData) => {
+  try {
+    const { token } = getUserInfo();
+    const response = await axios({
+      url: `${apiUrl}/api/uploads`,
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart-data',
+      },
+      data: formData,
+    });
+    if (response.statusText !== 'Created') {
+      throw new Error(response.data.message);
+    } else {
+      return response.data;
+    }
+  } catch (err) {
+    return { error: err.response.data.message || err.message };
+  }
+}
+
+export const deleteProduct = async (productId) => {
+  try {
+    const { token } = getUserInfo();
+    const response = await axios({
+      url: `${apiUrl}/api/products/${productId}`,
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (response.statusText !== 'OK') {
+      throw new Error(response.data.message);
+    }
+    return response.data;
+  } catch (err) {
+    return { error: err.response.data.message || err.message };
+  };
 };
 
 export const getMyorders = async () => {
@@ -213,6 +255,46 @@ export const getOrder = async (id) => {
   } catch (err) {
     return { error: err.message };
   }
+};
+
+export const getOrders = async () => {
+  // url에서 가져온 id
+  try { // 서버(localhost:5000)에 데이터를 요청한다.
+      const response = await axios({
+          url: `${apiUrl}/api/orders`,
+          method: 'GET',
+          headers: { //json get 방식으로 자료를 요청한다.
+              'Content-Type' : 'application/json',
+          }   
+      });
+  if(response.statusText !== 'OK') {
+      throw new Error(response.data.message);
+  }    
+  return response.data;
+  } catch(err) {
+      console.log(err);
+      return { error: err.response.data.message || err.message };
+  };
+};
+
+export const deleteOrder = async (orderId) => {
+  try {
+    const { token } = getUserInfo();
+    const response = await axios({
+      url: `${apiUrl}/api/orders/${orderId}`,
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (response.statusText !== 'OK') {
+      throw new Error(response.data.message);
+    }
+    return response.data;
+  } catch (err) {
+    return { error: err.response.data.message || err.message };
+  };
 };
 
 export const getPaypalClientId = async () => {

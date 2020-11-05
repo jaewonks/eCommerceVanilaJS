@@ -1,0 +1,64 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/bin/yarn serve
+
+PATH: 
+  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin
+
+Yarn version: 
+  1.22.5
+
+Node version: 
+  14.13.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  SyntaxError: /Users/jaewon/Desktop/ecommerce_vanila/package.json: Unexpected token / in JSON at position 116
+      at JSON.parse (<anonymous>)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/local/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "ecommerce_vanila",
+    "version": "1.0.0",
+    "description": "Vanlia JS backend",
+    "main": "index.js",
+    //"type": "module",
+    "scripts": {
+      "start": "nodemon --watch backend --exec babel-node backend/server.js",
+      "build": "rm -rf && babel backend -d dist",
+      "serve": "node dist/server.js",
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "body-parser": "^1.19.0",
+      "cors": "^2.8.5",
+      "dotenv": "^8.2.0",
+      "express": "^4.17.1",
+      "express-async-handler": "^1.1.4",
+      "fs": "0.0.1-security",
+      "jsonwebtoken": "^8.5.1",
+      "mongoose": "^5.10.10",
+      "multer": "^1.4.2",
+      "net": "^1.0.2"
+    },
+    "devDependencies": {
+      "@babel/cli": "^7.12.1",
+      "@babel/core": "^7.12.3",
+      "@babel/node": "^7.12.1",
+      "@babel/preset-env": "^7.12.1",
+      "nodemon": "^2.0.6"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

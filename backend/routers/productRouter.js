@@ -55,4 +55,15 @@ router.put('/:id', isAuth, isAdmin, expressAsyncHandler( async(req, res) => {
   }
 }))
 
+router.delete('/:id', isAuth, isAdmin, expressAsyncHandler( async(req, res) => {
+  const productId = req.params.id; // 아이디를 파라미터로 전달 받아서
+  const product = await Product.findById(productId);
+  if(product) {
+    const deleteProduct = await product.remove();
+    res.send({ message: 'Product Deleted', product: deleteProduct })
+  } else {
+    res.status(404).send({ message: 'Product Not Found' });
+  }
+}));
+
 export default router;

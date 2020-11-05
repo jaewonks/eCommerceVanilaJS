@@ -20,7 +20,8 @@ li {
     list-style-type: none;
 }
 input,
-button {
+button,
+textarea {
     font-size: 1.6rem;
     padding: 1rem;
     border-radius: .5rem;
@@ -31,7 +32,13 @@ button {
 input {
     background-color:rgb(232, 240, 254);
 }
-
+textarea {
+  width: 27.81rem;
+  height: 40rem;;
+  resize: none;
+  background-color:rgb(232, 240, 254);
+  font: 1.6rem DM Sans, sans-serif;
+}
 button:hover {
     color: #f1e8e6;
 }

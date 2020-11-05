@@ -36,7 +36,7 @@ const ProductScreen = {
                                 value: product.rating, 
                                 text: `${product.numReviews} Reviews` })}
                         </li>
-                        <li>Price: <strong>${product.price}</strong></li>
+                        <li>Price: <strong>£${product.price}</strong></li>
                         <li>Description: 
                             <div>
                                 ${product.description}
@@ -46,7 +46,7 @@ const ProductScreen = {
                 </div>
                 <div class='details-action'>
                   <ul>
-                    <li>Price: ${product.price}</li>
+                    <li>Price: £${product.price}</li>
                     <li>Status: 
                         ${product.countInStock > 0 ? 
                         `<span class='success'>In Stock</span>` :
