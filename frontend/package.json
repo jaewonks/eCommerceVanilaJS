@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "axios": "^0.21.0",
+    "chartist": "^0.11.4",
     "fs": "0.0.1-security"
   },
   "devDependencies": {
@@ -14,7 +15,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --watch-content-base --open",
-    "dev" : "webpack --mode=production --output ./main.js",
+    "dev": "webpack --mode=production --output ./main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jaewon Kim",

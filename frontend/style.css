@@ -5,8 +5,8 @@ html {
     font-size: 62.5%; /* default browser font 16px = 62.5% 10px = 1rem */
 }
 body {
-    height: 100vh;
-    font: 1.6rem DM Sans, sans-serif;
+    height: 100vh; 
+    font: 1.6rem Raleway, sans-serif;
     margin: 0;
 }
 a {
@@ -100,7 +100,7 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center; /* center vertically */
-    padding: .5rem 11rem; /* 5px */
+    padding: .5rem 2rem; /* 5px */
 }
 header a{
     color: #454545;
@@ -444,8 +444,8 @@ footer {
     padding: 1rem;
   }
   .summary-body {
-    font-size: 4rem;
-    padding: 1rem;
+    font-size: 2rem;
+    padding: 4rem;
     text-align: center;
   }
   .summary-title.color1 {
@@ -460,6 +460,7 @@ footer {
   .charts {
     display: flex;
     justify-content: space-between;
+    padding: 3rem 2rem;
   }
   .charts > div {
     flex: 1;

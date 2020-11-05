@@ -1,19 +1,13 @@
-import { getOrders, createOrder, deleteOrder } from '../api.js';
+import { getOrders, deleteOrder } from '../api.js';
 import DashboardMenu from '../components/DashboardMenu.js';
 import { hideLoading, rerender, showLoading, showMessage } from '../utils.js';
 
 const OrderListScreen = {
   after_render: () => {
-    document.getElementById('create-order-button')
-      .addEventListener('click', async () => {
-        const data = await createOrder();
-        console.log(data);
-        document.location.hash = `/order/${data.order._id}/edit`;
-      }); 
     const editButtons = document.getElementsByClassName('edit-button');
     Array.from(editButtons).forEach( editButton => {
       editButton.addEventListener('click', () => {
-        document.location.hash = `/order/${editButton.id}/edit`;
+        document.location.hash = `/order/${editButton.id}`;
       });
     });
     const deleteButtons = document.getElementsByClassName('delete-button');
@@ -40,27 +34,28 @@ const OrderListScreen = {
         ${DashboardMenu.render({ selected: 'dashboard' })}
         <div class='dashboard-content'>
           <h2>Orderlist</h2>
-          <button id='create-order-button' class='primary'>Create Order</button>
           <div class='order-list'>
             <table>
               <thead>
                 <th>ID</th>
-                <th>NAME</th>
-                <th>PRICE</th>
-                <th>CATEGORY</th>
-                <th>BRAND</th>
-                <th>ACTION</th>
+                <th>DATE</th>
+                <th>TOTAL</th>
+                <th>USER</th>
+                <th>PAID AT</th>
+                <th>DELEVERED AT</th>
+                <th class='tr-action'>ACTION</th>
               </thead>
               <tbody>
                 ${orders.map((order) => 
                 `<tr>
                   <td>${order._id}</td>
-                  <td>${order.name}</td>
-                  <td>£${order.price}</td>
-                  <td>${order.category}</td>
-                  <td>${order.brand}</td>
+                  <td>${order.createdAt.substring(0,10)}</td>
+                  <td>£${order.totalPrice}</td>
+                  <td>${order.user.name}</td>
+                  <td>${order.paidAt || 'No'}</td>
+                  <td>${order.deliveredAt || 'No'}</td>
                   <td>
-                  <button id='${order._id}' class='edit-button'>Edit</button>
+                  <button id='${order._id}' class='edit-button'>Details</button>
                   <button id='${order._id}' class='delete-button'>Delete</button>
                   </td>
                 </tr> 

@@ -13,6 +13,7 @@ import OrderScreen from './screens/OrderScreen.js';
 import DashboardScreen from './screens/DashboardScreen.js';
 import ProductListScreen from './screens/ProductListScreen.js';
 import ProductEditScreen from './screens/productEditScreen.js';
+import OrderListScreen from './screens/OrderListScreen.js';
 import Header from './components/Header.js';
 
 const routes = {
@@ -27,6 +28,7 @@ const routes = {
     '/cart': CartScreen, //네비게이션 우측 Cart로 들어가는 것 
     '/cart/:id': CartScreen,
     '/order/:id': OrderScreen,
+    '/orderlist': OrderListScreen,
     '/dashboard': DashboardScreen,
     '/productlist': ProductListScreen,
     '/product/:id/edit': ProductEditScreen
