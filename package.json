@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --watch backend --exec babel-node backend/server.js",
-    "build": "rm -rf && babel backend -d dist",
+    "build": "rm -rf dest && babel backend -d dist",
     "serve": "node dist/server.js",
     "heroku-prebuild": "cd frontend && npm install --dev",
     "heroku-postbuild": "npm run build && cd frontend && npm install && npm run build"
@@ -36,3 +36,4 @@
     "npm": "6.9.0"
   }
 }
+
